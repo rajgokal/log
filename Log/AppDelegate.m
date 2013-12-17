@@ -9,11 +9,17 @@
 #import "AppDelegate.h"
 #import "LogItemsViewController.h"
 #import "ViewController.h"
+#import "Database.h"
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [Database init];
+    //[Database dropTables];
+    [Database ensureTablesExist];    
+    [Database startBackgroundSync];
+    
     // Override point for customization after application launch.
     
 //    LogItemsViewController *logViewController = [[LogItemsViewController alloc] initWithStyle:UITableViewStylePlain];

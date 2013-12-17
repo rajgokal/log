@@ -63,15 +63,15 @@
 
 - (void) syncLogEntry: (LogEntry*) entry withCallback: (void (^)(id error, NSString* entryId)) callback{
 
-    [[self makeClient] callMethod: @"syncLogEntry" withParams: @[[entry toDictionary]] andCallback: ^(id error, NSDictionary* result){
-        if(error){ 
-            NSLog(@"Log Entry Sync Error: %@", error);
-            callback(error, nil); 
-        }else{ 
-            NSLog(@"Log Entry Sync Success Id: %@", result[@"Id"]);
-            callback(nil, result[@"Id"]); 
-        }
-    }];
+//    [[self makeClient] callMethod: @"syncLogEntry" withParams: @[[entry toDictionary]] andCallback: ^(id error, NSDictionary* result){
+//        if(error){ 
+//            NSLog(@"Log Entry Sync Error: %@", error);
+//            callback(error, nil); 
+//        }else{ 
+//            NSLog(@"Log Entry Sync Success Id: %@", result[@"Id"]);
+//            callback(nil, result[@"Id"]); 
+//        }
+//    }];
 }
 
 @end

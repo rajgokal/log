@@ -19,6 +19,7 @@
 		35A93AD4185FDBBF00292CF0 /* Application.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A93AD0185FDBBF00292CF0 /* Application.m */; };
 		35A93AD5185FDBBF00292CF0 /* Api.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A93AD1185FDBBF00292CF0 /* Api.m */; };
 		35A93AD8185FDD4E00292CF0 /* JsonRpcClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A93AD7185FDD4E00292CF0 /* JsonRpcClient.m */; };
+		35A93ADD18600ECE00292CF0 /* LogButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A93ADC18600ECE00292CF0 /* LogButton.m */; };
 		35C65232185F5D71004A8141 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35C65231185F5D71004A8141 /* Foundation.framework */; };
 		35C65234185F5D71004A8141 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35C65233185F5D71004A8141 /* CoreGraphics.framework */; };
 		35C65236185F5D71004A8141 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35C65235185F5D71004A8141 /* UIKit.framework */; };
@@ -70,6 +71,8 @@
 		35A93AD3185FDBBF00292CF0 /* Application.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Application.h; sourceTree = "<group>"; };
 		35A93AD6185FDD4E00292CF0 /* JsonRpcClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JsonRpcClient.h; sourceTree = "<group>"; };
 		35A93AD7185FDD4E00292CF0 /* JsonRpcClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JsonRpcClient.m; sourceTree = "<group>"; };
+		35A93ADB18600ECE00292CF0 /* LogButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogButton.h; sourceTree = "<group>"; };
+		35A93ADC18600ECE00292CF0 /* LogButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogButton.m; sourceTree = "<group>"; };
 		35C6522E185F5D71004A8141 /* Log.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Log.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		35C65231185F5D71004A8141 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		35C65233185F5D71004A8141 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -176,6 +179,8 @@
 				35C65243185F5D71004A8141 /* Main.storyboard */,
 				35C65246185F5D71004A8141 /* ViewController.h */,
 				35C65247185F5D71004A8141 /* ViewController.m */,
+				35A93ADB18600ECE00292CF0 /* LogButton.h */,
+				35A93ADC18600ECE00292CF0 /* LogButton.m */,
 				35C65266185F5DC0004A8141 /* LogItemsViewController.h */,
 				35C65267185F5DC0004A8141 /* LogItemsViewController.m */,
 				35A93ACA185FCAB900292CF0 /* LogEntry.h */,
@@ -283,6 +288,21 @@
 			knownRegions = (
 				en,
 				Base,
+				de,
+				es,
+				fr,
+				id,
+				it,
+				ja,
+				ko,
+				ms,
+				nl,
+				pt,
+				pt_PT,
+				ru,
+				sv,
+				zh_Hans,
+				zh_Hant,
 			);
 			mainGroup = 35C65225185F5D71004A8141;
 			productRefGroup = 35C6522F185F5D71004A8141 /* Products */;
@@ -325,6 +345,7 @@
 				35A93AD4185FDBBF00292CF0 /* Application.m in Sources */,
 				35A93AD5185FDBBF00292CF0 /* Api.m in Sources */,
 				35A93ACC185FCAB900292CF0 /* LogEntry.m in Sources */,
+				35A93ADD18600ECE00292CF0 /* LogButton.m in Sources */,
 				35A93AB7185FC46600292CF0 /* Database.m in Sources */,
 				35C65242185F5D71004A8141 /* AppDelegate.m in Sources */,
 				35A93AC2185FC75000292CF0 /* FMDatabase.m in Sources */,

@@ -19,7 +19,7 @@ static NSThread *_syncThread = nil;
     
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
-    _dbPath = [documentsDirectory stringByAppendingPathComponent:@"log.db"];
+    _dbPath = [documentsDirectory stringByAppendingPathComponent:@"context.db"];
     
     NSLog(@"DB Path: %@", _dbPath);
     
@@ -53,37 +53,10 @@ static NSThread *_syncThread = nil;
 
 + (bool) ensureTablesExist{
     
+    NSLog(@"ensuring tables exist");
     if(![Database tableExists: @"LogEntry"]){
         [Database createTables];
     }
-    
-    return(true);
-}
-
-+ (bool) createTables{
-    
-    FMDatabase *db = [Database open];
-    
-    NSMutableString *query = [[NSMutableString alloc] init];
-    
-    [query appendString: @"CREATE TABLE LogEntry("];
-    [query appendString: @"Id           TEXT,"];
-    [query appendString: @"Timestamp    REAL,"];
-    [query appendString: @"Name         REAL,"];
-    [query appendString: @"Value        REAL,"];
-    [query appendString: @"Synced       INTEGER)"];
-    
-    if(![db executeUpdate: query]){ NSLog(@"DB Error: %@", [db lastErrorMessage]); return(false); }
-    
-    query = [[NSMutableString alloc] init];
-    
-    [query appendString: @"CREATE TABLE Lookup("];
-    [query appendString: @"Key           TEXT,"];
-    [query appendString: @"Value         TEXT)"];
-    
-    if(![db executeUpdate: query]){ NSLog(@"DB Error: %@", [db lastErrorMessage]); return(false); }
-    
-    [db close];
     
     return(true);
 }
@@ -252,6 +225,8 @@ static NSThread *_syncThread = nil;
         }];
         if(callback){ callback(entry.entryId); }
     }
+    
+    NSLog(@"%i log entries", [Database numberOfLogEntries]);
 }
 
 + (NSInteger) numberOfLogEntries{
@@ -288,6 +263,54 @@ static NSThread *_syncThread = nil;
     [db close];
     
     return(entry);
+}
+
++ (LogEntry*) getLastLogEntryNamed: (NSString *) name {
+    
+    FMDatabase *db = [Database open];
+    
+    FMResultSet *rs = [db executeQuery: @"SELECT Id, Timestamp, Name, Value, Synced FROM LogEntry WHERE Name = '?' ORDER BY Timestamp DESC LIMIT 1", name];
+    
+    LogEntry* entry = nil;
+    
+    if ([rs next]) {
+        
+        entry = [[LogEntry alloc] initWithRecord: rs];
+        
+        //NSLog(@"Got Entry: %@", [entry toDictionary]);
+    }
+    
+    [db close];
+    
+    return(entry);
+}
+
++ (bool) createTables{
+    
+    FMDatabase *db = [Database open];
+    
+    NSMutableString *query = [[NSMutableString alloc] init];
+    
+    [query appendString: @"CREATE TABLE LogEntry("];
+    [query appendString: @"Id           TEXT,"];
+    [query appendString: @"Timestamp    REAL,"];
+    [query appendString: @"Name         REAL,"];
+    [query appendString: @"Value        REAL,"];
+    [query appendString: @"Synced       INTEGER)"];
+    
+    if(![db executeUpdate: query]){ NSLog(@"DB Error: %@", [db lastErrorMessage]); return(false); }
+    
+    query = [[NSMutableString alloc] init];
+    
+    [query appendString: @"CREATE TABLE Lookup("];
+    [query appendString: @"Key           TEXT,"];
+    [query appendString: @"Value         TEXT)"];
+    
+    if(![db executeUpdate: query]){ NSLog(@"DB Error: %@", [db lastErrorMessage]); return(false); }
+    
+    [db close];
+    
+    return(true);
 }
 
 + (FMDatabase*) open{

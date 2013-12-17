@@ -7,6 +7,9 @@
 //
 
 #import "ViewController.h"
+#import "LogEntry.h"
+#import "LogButton.h"
+#import "Database.h"
 
 @interface ViewController ()
 
@@ -21,7 +24,7 @@
 {
     [super viewDidLoad];
     
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = [UIColor grayColor];
     
     _logItems = @[
                   @{@"Name" : @"Weight",
@@ -84,58 +87,22 @@
     for (int i=0; i<_logItems.count; i++)
     {
         NSLog(@"%i",i);
-        UIView *logItem = [self makeItem:i];
+        LogButton *logItem = [self makeLogButton:i];
         [scrollView addSubview:logItem];
     }
     
 	// Do any additional setup after loading the view, typically from a nib.
 }
 
-- (UIView *)makeItem:(int)number
+- (LogButton *)makeLogButton:(int)number
 {
-    int viewHeight = 30;
+    int viewHeight = 50;
     int viewWidth = self.view.frame.size.width-2;
     NSDictionary *logItem = _logItems[number];
-    UIView *container = [[UIView alloc] initWithFrame:CGRectMake(1,(viewHeight+1)*number,viewWidth,viewHeight)];
-    container.backgroundColor = [UIColor grayColor];
+    LogButton *logButton = [[LogButton alloc] initWithFrame:CGRectMake(1,20+(viewHeight+1)*number,viewWidth,viewHeight)];
+    [logButton setName:[logItem objectForKey:@"Name"]];
     
-    // Label
-    UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(20,0,viewWidth*.7,viewHeight)];
-    title.text = [logItem objectForKey:@"Name"];
-    [container addSubview:title];
-    
-    // Fields / boxes
-    if ([[logItem objectForKey:@"Type"] isEqual:@"Decimal"])
-         {
-             // Add decimal and text box formatting, and return keyboard
-             UITextField *field = [[UITextField alloc] initWithFrame:CGRectMake(viewWidth * .7,0,viewWidth*.3,viewHeight)];
-             field.backgroundColor = [UIColor whiteColor];
-             field.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
-             field.returnKeyType = UIReturnKeyDone;
-             [container addSubview:field];
-         }
-    
-    if ([[logItem objectForKey:@"Type"] isEqual:@"Percentage"])
-    {
-        // Add percentage and text box formatting, and return keyboard
-        UITextField *field = [[UITextField alloc] initWithFrame:CGRectMake(viewWidth * .7,0,viewWidth*.3,viewHeight)];
-        field.backgroundColor = [UIColor greenColor];
-        field.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
-        field.returnKeyType = UIReturnKeyDone;
-        [container addSubview:field];
-    }
-    
-    if ([[logItem objectForKey:@"Type"] isEqual:@"Boolian"])
-    {
-        // Add checkboxes
-        UITextField *field = [[UITextField alloc] initWithFrame:CGRectMake(viewWidth * .7,0,viewWidth*.3,viewHeight)];
-        field.backgroundColor = [UIColor redColor];
-        field.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
-        field.returnKeyType = UIReturnKeyDone;
-        [container addSubview:field];
-    }
-    
-    return container;
+    return logButton;
 }
 
 - (void)didReceiveMemoryWarning
