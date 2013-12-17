@@ -107,6 +107,7 @@
     // Fields / boxes
     if ([[logItem objectForKey:@"Type"] isEqual:@"Decimal"])
          {
+             // Add decimal and text box formatting, and return keyboard
              UITextField *field = [[UITextField alloc] initWithFrame:CGRectMake(viewWidth * .7,0,viewWidth*.3,viewHeight)];
              field.backgroundColor = [UIColor whiteColor];
              field.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
@@ -114,6 +115,25 @@
              [container addSubview:field];
          }
     
+    if ([[logItem objectForKey:@"Type"] isEqual:@"Percentage"])
+    {
+        // Add percentage and text box formatting, and return keyboard
+        UITextField *field = [[UITextField alloc] initWithFrame:CGRectMake(viewWidth * .7,0,viewWidth*.3,viewHeight)];
+        field.backgroundColor = [UIColor greenColor];
+        field.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+        field.returnKeyType = UIReturnKeyDone;
+        [container addSubview:field];
+    }
+    
+    if ([[logItem objectForKey:@"Type"] isEqual:@"Boolian"])
+    {
+        // Add checkboxes
+        UITextField *field = [[UITextField alloc] initWithFrame:CGRectMake(viewWidth * .7,0,viewWidth*.3,viewHeight)];
+        field.backgroundColor = [UIColor redColor];
+        field.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+        field.returnKeyType = UIReturnKeyDone;
+        [container addSubview:field];
+    }
     
     return container;
 }

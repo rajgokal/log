@@ -16,7 +16,7 @@
 {
     // Override point for customization after application launch.
     
-    LogItemsViewController *logViewController = [[LogItemsViewController alloc] initWithStyle:UITableViewStylePlain];
+//    LogItemsViewController *logViewController = [[LogItemsViewController alloc] initWithStyle:UITableViewStylePlain];
     ViewController *viewController = [[ViewController alloc] initWithCoder:nil];
     self.window.rootViewController = viewController;
     
