@@ -49,15 +49,6 @@
         NSDictionary *logItem = _categories[i];
         NSString *name = [logItem objectForKey:@"Name"];
         UILabel *nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, i*blockHeight, blockWidth*3, 20)];
-        CGRect expectedLabelSize = [name boundingRectWithSize:CGSizeZero
-                                                            options:NSStringDrawingTruncatesLastVisibleLine
-                                                         attributes:@{
-                                                                      NSFontAttributeName: [[StyleFactory normalFont] fontWithSize:12.0]
-                                                                      }
-                                                            context:nil];
-        nameLabel.frame = CGRectMake(5, i*blockHeight, expectedLabelSize.size.width, expectedLabelSize.size.height);
-        nameLabel.textColor = [UIColor whiteColor];
-        nameLabel.backgroundColor = [UIColor blackColor];
         nameLabel.text = name;
         nameLabel.font = [[StyleFactory normalFont] fontWithSize:7.0];
         
