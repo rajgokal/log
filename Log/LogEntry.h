@@ -24,4 +24,6 @@
 - (NSString*) toJson;
 - (NSDictionary*) toDictionary;
 
+- (NSString*)stringFromTimestamp;
+
 @end

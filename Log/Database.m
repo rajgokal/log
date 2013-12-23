@@ -32,6 +32,60 @@ static NSThread *_syncThread = nil;
     return([Database ensureTablesExist]);
 }
 
++ (NSArray *) categories{
+    return @[
+             @{@"Name" : @"Weight",
+               @"Type" : @"Decimal"
+               },
+             @{@"Name" : @"Body Fat \%",
+               @"Type" : @"Percentage",
+               },
+             @{@"Name" : @"Muscle \%",
+               @"Type" : @"Percentage"
+               },
+             @{@"Name" : @"Floss",
+               @"Type" : @"Boolian"
+               },
+             @{@"Name" : @"Brush Teeth",
+               @"Type" : @"Boolian"
+               },
+             @{@"Name" : @"Shower",
+               @"Type" : @"Boolian"
+               },
+             @{@"Name" : @"Mouthwash",
+               @"Type" : @"Boolian"
+               },
+             @{@"Name" : @"Moisturizer",
+               @"Type" : @"Boolian"
+               },
+             @{@"Name" : @"Vitamins",
+               @"Type" : @"Boolian"
+               },
+             @{@"Name" : @"Yoga",
+               @"Type" : @"Boolian"
+               },
+             @{@"Name" : @"Stretch",
+               @"Type" : @"Boolian"
+               },
+             @{@"Name" : @"Calisthenics",
+               @"Type" : @"Boolian"
+               },
+             @{@"Name" : @"Run",
+               @"Type" : @"Boolian"
+               },
+             @{@"Name" : @"Protein Shake",
+               @"Type" : @"Boolian"
+               },
+             @{@"Name" : @"Meditation",
+               @"Type" : @"Boolian"
+               },
+             @{@"Name" : @"Day Planning",
+               @"Type" : @"Boolian"
+               }
+             ];
+}
+
+
 + (bool) tableExists: (NSString*) tableName{
     
     FMDatabase *db = [Database open];
@@ -227,6 +281,7 @@ static NSThread *_syncThread = nil;
     }
     
     NSLog(@"%i log entries", [Database numberOfLogEntries]);
+    NSLog(@"Saved Entry: %@", [entry toDictionary]);
 }
 
 + (NSInteger) numberOfLogEntries{
@@ -265,12 +320,19 @@ static NSThread *_syncThread = nil;
     return(entry);
 }
 
-+ (LogEntry*) getLastLogEntryNamed: (NSString *) name {
++ (LogEntry *) getLastLogEntryNamed: (NSString *) name ForDay: (NSDate *) date {
+    
+    NSCalendar *cal = [NSCalendar currentCalendar];
+    
+    NSDate *startOfDay;
+    NSTimeInterval lengthOfDay = (double) 86400;
+    [cal rangeOfUnit:NSDayCalendarUnit startDate:&startOfDay interval:&lengthOfDay forDate:date];
+    NSDate *endOfDay = [startOfDay dateByAddingTimeInterval:lengthOfDay];
     
     FMDatabase *db = [Database open];
     
-    FMResultSet *rs = [db executeQuery: @"SELECT Id, Timestamp, Name, Value, Synced FROM LogEntry WHERE Name = '?' ORDER BY Timestamp DESC LIMIT 1", name];
-    
+    FMResultSet *rs = [db executeQuery: @"SELECT Id, Timestamp, Name, Value, Synced FROM LogEntry WHERE Timestamp BETWEEN ? and ? AND Name LIKE ? ORDER BY Timestamp DESC LIMIT 1", [NSNumber numberWithDouble:(double)[startOfDay timeIntervalSince1970]], [NSNumber numberWithDouble:(double)[endOfDay timeIntervalSince1970]], name];
+     
     LogEntry* entry = nil;
     
     if ([rs next]) {
@@ -279,6 +341,27 @@ static NSThread *_syncThread = nil;
         
         //NSLog(@"Got Entry: %@", [entry toDictionary]);
     }
+    
+    [db close];
+    
+    return(entry);
+}
+
++ (LogEntry*) getLastLogEntryNamed: (NSString *) name {
+    
+    FMDatabase *db = [Database open];
+    
+    FMResultSet *rs = [db executeQuery: @"SELECT Id, Timestamp, Name, Value, Synced FROM LogEntry WHERE Name LIKE ? ORDER BY Timestamp DESC LIMIT 1", name];
+    
+    LogEntry* entry = nil;
+    
+    if ([rs next]) {
+        
+        entry = [[LogEntry alloc] initWithRecord: rs];
+        
+    }
+    NSLog(@"Searched for %@",name);
+    NSLog(@"Got Entry: %@", [entry toDictionary]);
     
     [db close];
     

@@ -45,6 +45,14 @@
     return self;
 }
 
+
+- (NSString*)stringFromTimestamp{
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"h:mm a"];
+    NSString *string = [formatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:[_timestamp doubleValue]]];
+    return string;
+}
+
 - (NSString*) toJson{
     return([Json stringify: [self toDictionary]]);
 }

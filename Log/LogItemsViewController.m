@@ -7,6 +7,8 @@
 //
 
 #import "LogItemsViewController.h"
+#import "Database.h"
+#import "LogCell.h"
 
 @interface LogItemsViewController ()
 
@@ -32,6 +34,14 @@
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    [self.tableView registerClass:[LogCell class] forCellReuseIdentifier:@"Cell"];
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [self.tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning
@@ -44,26 +54,29 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 0;
+    return [Database numberOfLogEntries];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    LogCell *cell = (LogCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.presentingViewController = (UINavigationController*) self;
+    [cell layoutPanel];
     
-    // Configure the cell...
+    LogEntry *fe = [Database getLogEntry: indexPath.row];
+    [cell loadFoodEntry: fe];
     
     return cell;
+
 }
 
 /*

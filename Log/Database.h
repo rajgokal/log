@@ -18,6 +18,7 @@
 + (FMDatabase*) open;
 + (void) openWithCallaback: (void(^)(FMDatabase *db)) callback;
 
++ (NSArray *) categories;
 + (bool) ensureTablesExist;
 + (bool) tableExists: (NSString*) tableName;
 + (bool) dropTables;
@@ -32,7 +33,9 @@
 
 + (void) saveLogEntry: (LogEntry*) entry withCallback: (void(^)(NSString*)) callback;
 
-//+ (LogEntry*) getLogEntry: (NSString*) entryId;
++ (LogEntry*) getLogEntry: (NSInteger) entryId;
++ (LogEntry*) getLastLogEntryNamed: (NSString *) name;
++ (LogEntry *) getLastLogEntryNamed: (NSString *) name ForDay: (NSDate *) date;
 
 + (NSInteger) numberOfLogEntries;
 

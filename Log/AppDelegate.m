@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "LogItemsViewController.h"
+#import "HistoryViewController.h"
 #import "ViewController.h"
 #import "Database.h"
 
@@ -16,15 +17,32 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     [Database init];
-    //[Database dropTables];
-    [Database ensureTablesExist];    
+//    [Database dropTables];
+    [Database ensureTablesExist];
     [Database startBackgroundSync];
     
     // Override point for customization after application launch.
-    
-//    LogItemsViewController *logViewController = [[LogItemsViewController alloc] initWithStyle:UITableViewStylePlain];
+
     ViewController *viewController = [[ViewController alloc] initWithCoder:nil];
-    self.window.rootViewController = viewController;
+    viewController.title = NSLocalizedString(@"Today", @"Today");
+    viewController.tabBarItem.image = [UIImage imageNamed:@"first"];
+    
+    HistoryViewController *historyViewController = [[HistoryViewController alloc] init];
+    historyViewController.title = NSLocalizedString(@"History", @"History");
+    historyViewController.tabBarItem.image = [UIImage imageNamed:@"second"];
+    
+    LogItemsViewController *logViewController = [[LogItemsViewController alloc] initWithStyle:UITableViewStylePlain];
+    logViewController.title = NSLocalizedString(@"Log", @"Log");
+    logViewController.tabBarItem.image = [UIImage imageNamed:@"second"];
+    
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+
+    UITabBarController *tabBarController = [[UITabBarController alloc] init];
+    tabBarController.viewControllers = @[viewController,historyViewController,logViewController];
+    
+    self.window.rootViewController = tabBarController;
+    [self.window makeKeyAndVisible];
+
     
     return YES;
 }
