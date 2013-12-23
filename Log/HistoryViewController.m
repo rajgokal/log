@@ -32,32 +32,46 @@
     [super viewDidLoad];
     
     _categories = [Database categories];
+    
+    float blockHeight = 50.0;
+    float blockWidth = self.view.frame.size.width / 7.0;
+    
     // Enable scrolling
     UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
     scrollView.scrollEnabled = YES;
-    scrollView.contentSize = CGSizeMake(self.view.frame.size.width, 20+_categories.count*(50+1)+50);
+    scrollView.contentSize = CGSizeMake(self.view.frame.size.width, _categories.count*blockHeight);
+    scrollView.contentInset = UIEdgeInsetsMake(20., 0., CGRectGetHeight(self.tabBarController.tabBar.frame), 0.);
     self.view = scrollView;
     self.view.backgroundColor = [StyleFactory backgroundColor];
-    
-    int blockHeight = 50;
-    int blockWidth = 31;
     
 	for (int i=0; i<_categories.count; i++)
     {
         NSDictionary *logItem = _categories[i];
         NSString *name = [logItem objectForKey:@"Name"];
-        UILabel *nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, 20+i*(blockHeight+1), blockWidth*3, blockHeight)];
+        UILabel *nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, i*blockHeight, blockWidth*3, 20)];
+        CGRect expectedLabelSize = [name boundingRectWithSize:CGSizeZero
+                                                            options:NSStringDrawingTruncatesLastVisibleLine
+                                                         attributes:@{
+                                                                      NSFontAttributeName: [[StyleFactory normalFont] fontWithSize:12.0]
+                                                                      }
+                                                            context:nil];
+        nameLabel.frame = CGRectMake(5, i*blockHeight, expectedLabelSize.size.width, expectedLabelSize.size.height);
+        nameLabel.textColor = [UIColor whiteColor];
+        nameLabel.backgroundColor = [UIColor blackColor];
         nameLabel.text = name;
-        nameLabel.font = [[StyleFactory normalFont] fontWithSize:12.0];
-        [self.view addSubview:nameLabel];
+        nameLabel.font = [[StyleFactory normalFont] fontWithSize:7.0];
         
         for (int j=0; j<7; j++)
         {
             NSDate *date = [[NSDate date] dateByAddingTimeInterval:(-86400*j)];
             UIView *block = [self blockForName:name withDay:date];
-            block.frame = CGRectMake(blockWidth*3+j*(blockWidth+1), 20+i*(blockHeight+1), blockWidth, blockHeight);
+            block.layer.borderWidth = 0.25f;
+            block.layer.borderColor = [self.view.backgroundColor CGColor];
+            block.frame = CGRectMake(0+j*blockWidth, i*blockHeight, blockWidth, blockHeight);
             [self.view addSubview:block];
         }
+        
+        [self.view addSubview:nameLabel];
     }
 }
 

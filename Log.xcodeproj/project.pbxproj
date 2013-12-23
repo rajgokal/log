@@ -137,6 +137,41 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		355188DC1868045000632358 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				35C65246185F5D71004A8141 /* ViewController.h */,
+				35C65247185F5D71004A8141 /* ViewController.m */,
+				35613DA11864E154008C5A7C /* HistoryViewController.h */,
+				35613DA21864E154008C5A7C /* HistoryViewController.m */,
+				35C65266185F5DC0004A8141 /* LogItemsViewController.h */,
+				35C65267185F5DC0004A8141 /* LogItemsViewController.m */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		355188DD1868047500632358 /* Objects */ = {
+			isa = PBXGroup;
+			children = (
+				355188D91867B52100632358 /* Habit.h */,
+				355188DA1867B52100632358 /* Habit.m */,
+				35A93ACA185FCAB900292CF0 /* LogEntry.h */,
+				35A93ACB185FCAB900292CF0 /* LogEntry.m */,
+			);
+			name = Objects;
+			sourceTree = "<group>";
+		};
+		355188DE1868048900632358 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				35A93ADB18600ECE00292CF0 /* LogButton.h */,
+				35A93ADC18600ECE00292CF0 /* LogButton.m */,
+				35613DA41864E2AF008C5A7C /* LogCell.h */,
+				35613DA51864E2AF008C5A7C /* LogCell.m */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
 		35A93AC7185FC75900292CF0 /* FMDB */ = {
 			isa = PBXGroup;
 			children = (
@@ -190,25 +225,14 @@
 		35C65237185F5D71004A8141 /* Log */ = {
 			isa = PBXGroup;
 			children = (
-				35A93AB5185FC46600292CF0 /* Database.h */,
-				35A93AB6185FC46600292CF0 /* Database.m */,
-				355188D91867B52100632358 /* Habit.h */,
-				355188DA1867B52100632358 /* Habit.m */,
 				35C65240185F5D71004A8141 /* AppDelegate.h */,
 				35C65241185F5D71004A8141 /* AppDelegate.m */,
+				35A93AB5185FC46600292CF0 /* Database.h */,
+				35A93AB6185FC46600292CF0 /* Database.m */,
+				355188DD1868047500632358 /* Objects */,
 				35C65243185F5D71004A8141 /* Main.storyboard */,
-				35C65246185F5D71004A8141 /* ViewController.h */,
-				35C65247185F5D71004A8141 /* ViewController.m */,
-				35A93ADB18600ECE00292CF0 /* LogButton.h */,
-				35A93ADC18600ECE00292CF0 /* LogButton.m */,
-				35613DA11864E154008C5A7C /* HistoryViewController.h */,
-				35613DA21864E154008C5A7C /* HistoryViewController.m */,
-				35C65266185F5DC0004A8141 /* LogItemsViewController.h */,
-				35C65267185F5DC0004A8141 /* LogItemsViewController.m */,
-				35613DA41864E2AF008C5A7C /* LogCell.h */,
-				35613DA51864E2AF008C5A7C /* LogCell.m */,
-				35A93ACA185FCAB900292CF0 /* LogEntry.h */,
-				35A93ACB185FCAB900292CF0 /* LogEntry.m */,
+				355188DC1868045000632358 /* ViewControllers */,
+				355188DE1868048900632358 /* Views */,
 				35A93ACD185FCCB700292CF0 /* Json.m */,
 				35A93ACE185FCCB700292CF0 /* Json.h */,
 				35A93AD3185FDBBF00292CF0 /* Application.h */,

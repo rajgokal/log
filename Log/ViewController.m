@@ -19,6 +19,8 @@
 @implementation ViewController
 {
     NSArray *_categories;
+    int _viewHeight;
+    int _viewWidth;
 }
 
 - (void)viewDidLoad
@@ -26,29 +28,32 @@
     [super viewDidLoad];
     
     _categories = [Database categories];
-    // Enable scrolling
+    _viewHeight = 50;
+    _viewWidth = self.view.frame.size.width;
+    
+    // Enable scrolling by implementing scrollview
     UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
     scrollView.scrollEnabled = YES;
-    scrollView.contentSize = CGSizeMake(self.view.frame.size.width, 20+_categories.count*(50+1)+50);
+    scrollView.contentSize = CGSizeMake(self.view.frame.size.width, _categories.count*_viewHeight);
     self.view = scrollView;
+    scrollView.contentInset = UIEdgeInsetsMake(20., 0., CGRectGetHeight(self.tabBarController.tabBar.frame), 0.);
     self.view.backgroundColor = [StyleFactory backgroundColor];
     
     // Add items to be logged
     for (int i=0; i<_categories.count; i++)
     {
+        // TODO: Make categories generate from a CATEGORIES table
         LogButton *logItem = [self makeLogButton:i];
+        logItem.layer.borderWidth = 0.25f;
+        logItem.layer.borderColor = [self.view.backgroundColor CGColor];
         [self.view addSubview:logItem];
     }
-    
-	// Do any additional setup after loading the view, typically from a nib.
 }
 
 - (LogButton *)makeLogButton:(int)number
 {
-    int viewHeight = 50;
-    int viewWidth = self.view.frame.size.width-2;
     NSDictionary *logItem = _categories[number];
-    LogButton *logButton = [[LogButton alloc] initWithFrame:CGRectMake(1,20+(viewHeight+1)*number,viewWidth,viewHeight)];
+    LogButton *logButton = [[LogButton alloc] initWithFrame:CGRectMake(0,(_viewHeight)*number,_viewWidth,_viewHeight)];
     logButton.name = [logItem objectForKey:@"Name"];
     [logButton loadLastLogEntry];
     

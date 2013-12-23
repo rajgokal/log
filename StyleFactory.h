@@ -7,6 +7,7 @@
 
 + (UIColor*) deemphasizeButtonColor;
 + (UIColor*) normalButtonColor;
++ (UIColor*) highlightColor;
 + (UIColor*) emphasizeButtonColor;
 
 + (UIFont*) normalFont;
@@ -31,5 +32,3 @@
 + (void) setHeight: (float) height ofTarget: (UIView*) target;
 
 @end
-
-

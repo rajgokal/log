@@ -14,11 +14,13 @@ static CGPoint _referencePoint = {0, 0};
 }
 
 + (UIColor*) emphasizeButtonColor{
-    return([UIColor colorWithRed:169.0/255.0 green:228.0/255.0 blue:114.0/255.0 alpha:1.0]);
+//    return([UIColor colorWithRed:169.0/255.0 green:228.0/255.0 blue:114.0/255.0 alpha:1.0]);
+    return([UIColor colorWithRed:39.0/255.0 green:174.0/255.0 blue:76.0/255.0 alpha:1.0]);
+//    return([UIColor colorWithRed:27.0/255.0 green:178.0/255.0 blue:73.0/255.0 alpha:1.0]);
 }
 
 + (UIColor*) highlightColor{
-    return([UIColor redColor]);
+    return([UIColor colorWithRed:241.0/255.0 green:196.0/255.0 blue:15.0/255.0 alpha:1.0]);
 }
  
 + (UIColor*) placeholderColor{
@@ -29,17 +31,14 @@ static CGPoint _referencePoint = {0, 0};
     return ([UIColor colorWithRed:216.0 / 255.0 green:216.0 / 255.0 blue:216.0 / 255.0 alpha:1.0]);}
 
 + (UIFont*) normalFont{
-    return [UIFont fontWithName:@"HelveticaNeue-Light" size:18.0];
+    return [UIFont fontWithName:@"HelveticaNeue-Thin" size:18.0];
 }
 
 + (void) styleCell: (UIView*) view{
     //view.backgroundColor = [UIColor colorWithHue:0.0 / 360.0 saturation:0.0 brightness:0.16 alpha:1.0];
 
     CALayer *bottomBorder = [CALayer layer];
-
     bottomBorder.frame = CGRectMake(0.0f, view.frame.size.height - 6.0f, view.frame.size.width, 5.0f);
-
-
     bottomBorder.backgroundColor = [UIColor colorWithWhite:0.8f 
                                                  alpha:1.0f].CGColor;
     [view.layer addSublayer:bottomBorder];

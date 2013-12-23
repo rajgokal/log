@@ -67,7 +67,7 @@
     // Done button
     _doneButton = [[UIButton alloc] initWithFrame:CGRectMake(viewWidth * .7,0,viewWidth*.3,viewHeight)];
     _doneButton.hidden = YES;
-    _doneButton.backgroundColor = [UIColor orangeColor];
+    _doneButton.backgroundColor = [StyleFactory highlightColor];
     [_doneButton setTitle:@"DONE" forState:UIControlStateNormal];
     [_doneButton addTarget:self action:@selector(done) forControlEvents:UIControlEventTouchUpInside];
     _doneButton.titleLabel.textColor = [UIColor blackColor];
@@ -109,8 +109,8 @@
     }
     UIColor *backgroundColor = _completed ? [StyleFactory emphasizeButtonColor] : [StyleFactory normalButtonColor];
     self.backgroundColor = backgroundColor;
-    _timeLabel.hidden = !_completed;
     self.name = _logEntry.name;
+    _timeLabel.hidden = !_completed;
     _timeLabel.text = [_logEntry.stringFromTimestamp lowercaseString];
 }
 
