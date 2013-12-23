@@ -11,7 +11,9 @@
 + (UIColor*) emphasizeButtonColor;
 
 + (UIFont*) normalFont;
++ (UIFont*) heavyFont;
 + (UIColor*) backgroundColor;
++ (UIColor*) headerBackgroundColor;
 
 + (void) setReferencePoint:(CGPoint)referencePoint;
 

@@ -32,57 +32,86 @@ static NSThread *_syncThread = nil;
     return([Database ensureTablesExist]);
 }
 
-+ (NSArray *) categories{
-    return @[
-             @{@"Name" : @"Weight",
-               @"Type" : @"Decimal"
-               },
-             @{@"Name" : @"Body Fat \%",
-               @"Type" : @"Percentage",
-               },
-             @{@"Name" : @"Muscle \%",
-               @"Type" : @"Percentage"
-               },
-             @{@"Name" : @"Floss",
-               @"Type" : @"Boolian"
-               },
-             @{@"Name" : @"Brush Teeth",
-               @"Type" : @"Boolian"
-               },
-             @{@"Name" : @"Shower",
-               @"Type" : @"Boolian"
-               },
-             @{@"Name" : @"Mouthwash",
-               @"Type" : @"Boolian"
-               },
-             @{@"Name" : @"Moisturizer",
-               @"Type" : @"Boolian"
-               },
-             @{@"Name" : @"Vitamins",
-               @"Type" : @"Boolian"
-               },
-             @{@"Name" : @"Yoga",
-               @"Type" : @"Boolian"
-               },
-             @{@"Name" : @"Stretch",
-               @"Type" : @"Boolian"
-               },
-             @{@"Name" : @"Calisthenics",
-               @"Type" : @"Boolian"
-               },
-             @{@"Name" : @"Run",
-               @"Type" : @"Boolian"
-               },
-             @{@"Name" : @"Protein Shake",
-               @"Type" : @"Boolian"
-               },
-             @{@"Name" : @"Meditation",
-               @"Type" : @"Boolian"
-               },
-             @{@"Name" : @"Day Planning",
-               @"Type" : @"Boolian"
-               }
-             ];
++ (NSArray *) category:(int)number {
+    NSArray *morning = @[
+                         @{@"Name" : @"Weight",
+                           @"Type" : @"Decimal"
+                           },
+                         @{@"Name" : @"Body Fat \%",
+                           @"Type" : @"Percentage",
+                           },
+                         @{@"Name" : @"Muscle \%",
+                           @"Type" : @"Percentage"
+                           },
+                         @{@"Name" : @"Floss",
+                           @"Type" : @"Boolian"
+                           },
+                         @{@"Name" : @"Brush Teeth",
+                           @"Type" : @"Boolian"
+                           },
+                         @{@"Name" : @"Shower",
+                           @"Type" : @"Boolian"
+                           },
+                         @{@"Name" : @"Mouthwash",
+                           @"Type" : @"Boolian"
+                           },
+                         @{@"Name" : @"Moisturizer",
+                           @"Type" : @"Boolian"
+                           },
+                         @{@"Name" : @"Vitamins",
+                           @"Type" : @"Boolian"
+                           },
+                         @{@"Name" : @"Yoga",
+                           @"Type" : @"Boolian"
+                           },
+                         @{@"Name" : @"Stretch",
+                           @"Type" : @"Boolian"
+                           },
+                         @{@"Name" : @"Calisthenics",
+                           @"Type" : @"Boolian"
+                           },
+                         @{@"Name" : @"Run",
+                           @"Type" : @"Boolian"
+                           },
+                         @{@"Name" : @"Protein Shake",
+                           @"Type" : @"Boolian"
+                           },
+                         @{@"Name" : @"Meditation",
+                           @"Type" : @"Boolian"
+                           },
+                         @{@"Name" : @"Day Planning",
+                           @"Type" : @"Boolian"
+                           }
+                         ];
+    
+    NSArray *day = @[
+                     @{@"Name" : @"Pomodoros",
+                       @"Type" : @"Decimal"
+                       },
+                     @{@"Name" : @"Call 1 Friend",
+                       @"Type" : @"Percentage",
+                       },
+                     @{@"Name" : @"Call 1 Contact",
+                       @"Type" : @"Percentage"
+                       },
+                     ];
+    
+    NSArray *evening = @[
+                         @{@"Name" : @"Brush Teeth",
+                           @"Type" : @"Boolian"
+                           },
+                         @{@"Name" : @"Wash Face",
+                           @"Type" : @"Boolian"
+                           },
+                         @{@"Name" : @"Next Day Planning",
+                           @"Type" : @"Boolian"
+                           }
+                         ];
+    
+    if (number==0) return morning;
+    if (number==1) return day;
+    if (number==2) return evening;
+    else return nil;
 }
 
 

@@ -7,7 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "LogEntry.h"
 
 @interface Habit : NSObject
+
+@property float goal;
+@property int currentLogStreak;
+@property int allTimeLogStreak;
+@property LogEntry *lastLogEntry;
+
 
 @end

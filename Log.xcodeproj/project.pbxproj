@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		355188DB1867B52100632358 /* Habit.m in Sources */ = {isa = PBXBuildFile; fileRef = 355188DA1867B52100632358 /* Habit.m */; };
+		355188E118683E9D00632358 /* left-arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 355188DF18683E9D00632358 /* left-arrow.png */; };
+		355188E218683E9D00632358 /* right-arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 355188E018683E9D00632358 /* right-arrow.png */; };
 		35613DA31864E154008C5A7C /* HistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35613DA21864E154008C5A7C /* HistoryViewController.m */; };
 		35613DA61864E2AF008C5A7C /* LogCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 35613DA51864E2AF008C5A7C /* LogCell.m */; };
 		35613DA818664680008C5A7C /* second@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 35613DA718664680008C5A7C /* second@2x.png */; };
@@ -56,6 +58,8 @@
 /* Begin PBXFileReference section */
 		355188D91867B52100632358 /* Habit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Habit.h; sourceTree = "<group>"; };
 		355188DA1867B52100632358 /* Habit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Habit.m; sourceTree = "<group>"; };
+		355188DF18683E9D00632358 /* left-arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "left-arrow.png"; sourceTree = "<group>"; };
+		355188E018683E9D00632358 /* right-arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "right-arrow.png"; sourceTree = "<group>"; };
 		35613DA11864E154008C5A7C /* HistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryViewController.h; sourceTree = "<group>"; };
 		35613DA21864E154008C5A7C /* HistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryViewController.m; sourceTree = "<group>"; };
 		35613DA41864E2AF008C5A7C /* LogCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogCell.h; sourceTree = "<group>"; };
@@ -251,6 +255,8 @@
 		35C65238185F5D71004A8141 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				355188DF18683E9D00632358 /* left-arrow.png */,
+				355188E018683E9D00632358 /* right-arrow.png */,
 				35613DA9186646B1008C5A7C /* first@2x.png */,
 				35613DA718664680008C5A7C /* second@2x.png */,
 				35C65239185F5D71004A8141 /* Log-Info.plist */,
@@ -370,8 +376,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				355188E218683E9D00632358 /* right-arrow.png in Resources */,
 				35C6524A185F5D71004A8141 /* Images.xcassets in Resources */,
 				35C6523C185F5D71004A8141 /* InfoPlist.strings in Resources */,
+				355188E118683E9D00632358 /* left-arrow.png in Resources */,
 				35613DA818664680008C5A7C /* second@2x.png in Resources */,
 				35613DAA186646B1008C5A7C /* first@2x.png in Resources */,
 				35C65245185F5D71004A8141 /* Main.storyboard in Resources */,

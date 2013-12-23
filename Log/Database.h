@@ -18,7 +18,7 @@
 + (FMDatabase*) open;
 + (void) openWithCallaback: (void(^)(FMDatabase *db)) callback;
 
-+ (NSArray *) categories;
++ (NSArray *) category:(int)number;
 + (bool) ensureTablesExist;
 + (bool) tableExists: (NSString*) tableName;
 + (bool) dropTables;

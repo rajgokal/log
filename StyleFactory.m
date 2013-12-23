@@ -30,8 +30,15 @@ static CGPoint _referencePoint = {0, 0};
 + (UIColor*) backgroundColor{
     return ([UIColor colorWithRed:216.0 / 255.0 green:216.0 / 255.0 blue:216.0 / 255.0 alpha:1.0]);}
 
++ (UIColor*) headerBackgroundColor{
+    return ([UIColor colorWithRed:127.0 / 255.0 green:140.0 / 255.0 blue:141.0 / 255.0 alpha:1.0]);}
+
 + (UIFont*) normalFont{
     return [UIFont fontWithName:@"HelveticaNeue-Thin" size:18.0];
+}
+
++ (UIFont*) heavyFont{
+    return [UIFont fontWithName:@"Helvetica" size:18.0];
 }
 
 + (void) styleCell: (UIView*) view{

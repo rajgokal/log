@@ -22,7 +22,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        _categories = [Database categories];
+        _categories = [Database category:0];
     }
     return self;
 }
@@ -30,8 +30,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    _categories = [Database categories];
     
     float blockHeight = 50.0;
     float blockWidth = self.view.frame.size.width / 7.0;
