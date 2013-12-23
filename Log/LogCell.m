@@ -39,7 +39,7 @@
     if(le){
         _commentLabel.text = _logEntry.name;
         
-        _valueLabel.text = [_logEntry.value stringValue];
+        if([_logEntry.value doubleValue] > 1) _valueLabel.text = [_logEntry.value stringValue];
 
         NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
         dateFormatter.dateStyle = NSDateFormatterMediumStyle;
@@ -48,13 +48,13 @@
         [dateFormatter setAMSymbol:@"am"];
         [dateFormatter setPMSymbol:@"pm"];
 
-        _timeLabel.font = [_timeLabel.font fontWithSize: 10.0f];
+        _timeLabel.font = [[StyleFactory normalFont] fontWithSize: 10.0f];
         _timeLabel.text = [dateFormatter stringFromDate:[NSDate dateWithTimeIntervalSince1970: [_logEntry.timestamp doubleValue]]];
 
-        if([_logEntry.synced boolValue]){
-            _syncedBox.backgroundColor = [UIColor greenColor];
+        if([_logEntry.value boolValue]){
+            _syncedBox.backgroundColor = [StyleFactory emphasizeButtonColor];
         }else{
-            _syncedBox.backgroundColor = [UIColor redColor];
+            _syncedBox.backgroundColor = [StyleFactory highlightColor];
         }
     }
 }
@@ -88,12 +88,12 @@
     [StyleFactory setReferencePoint: centerPoint];
     
     _commentLabel = [[UILabel alloc] initWithFrame:CGRectMake(25, 0, 225, 20)];
-    _commentLabel.font = [_commentLabel.font fontWithSize:12.0];
-    [StyleFactory alignY: _commentLabel withOffset: -30];
+    _commentLabel.font = [StyleFactory normalFont];
+    [StyleFactory alignY: _commentLabel withOffset: -20];
     [_panel addSubview:_commentLabel];
     
     _valueLabel = [[UILabel alloc] initWithFrame:CGRectMake(25, 0, 225, 20)];
-    _valueLabel.font = [_valueLabel.font fontWithSize:12.0];
+    _valueLabel.font = [StyleFactory normalFont];
     [StyleFactory alignY: _valueLabel withOffset: 0];
     [_panel addSubview:_valueLabel];
    
