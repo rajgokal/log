@@ -6,7 +6,7 @@ static CGPoint _referencePoint = {0, 0};
 @implementation StyleFactory
 
 + (UIColor*) deemphasizeButtonColor{
-    return([UIColor colorWithRed:0 green: 0 blue: 127 alpha:0.6f]);
+    return([UIColor colorWithRed:211.0/255.0 green:84.0/255.0 blue:0.0/255.0 alpha:1.0f]);
 }
 
 + (UIColor*) normalButtonColor{

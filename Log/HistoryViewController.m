@@ -46,9 +46,10 @@
     {
         NSDictionary *logItem = _categories[i];
         NSString *name = [logItem objectForKey:@"Name"];
-        UILabel *nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, i*blockHeight, blockWidth*3, 20)];
+        UILabel *nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, i*blockHeight, blockWidth*3, blockHeight)];
+        nameLabel.alpha = 0.3f;
         nameLabel.text = name;
-        nameLabel.font = [[StyleFactory normalFont] fontWithSize:7.0];
+        nameLabel.font = [StyleFactory normalFont];
         
         for (int j=0; j<7; j++)
         {

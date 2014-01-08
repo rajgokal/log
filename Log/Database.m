@@ -34,6 +34,9 @@ static NSThread *_syncThread = nil;
 
 + (NSArray *) category:(int)number {
     NSArray *morning = @[
+                         @{@"Name" : @"Make Bed",
+                           @"Type" : @"Boolian"
+                           },
                          @{@"Name" : @"Weight",
                            @"Type" : @"Decimal"
                            },
@@ -85,7 +88,7 @@ static NSThread *_syncThread = nil;
                          ];
     
     NSArray *day = @[
-                     @{@"Name" : @"Pomodoros",
+                     @{@"Name" : @"20 Pomodoros",
                        @"Type" : @"Decimal"
                        },
                      @{@"Name" : @"Call 1 Friend",
@@ -97,7 +100,7 @@ static NSThread *_syncThread = nil;
                      ];
     
     NSArray *evening = @[
-                         @{@"Name" : @"Brush Teeth",
+                         @{@"Name" : @"Brush Again",
                            @"Type" : @"Boolian"
                            },
                          @{@"Name" : @"Wash Face",

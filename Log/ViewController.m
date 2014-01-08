@@ -33,12 +33,21 @@
     UIScrollView *horizontalScroll = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
     horizontalScroll.scrollEnabled = YES;
     horizontalScroll.pagingEnabled = YES;
+    horizontalScroll.showsHorizontalScrollIndicator = YES;
     horizontalScroll.contentSize = CGSizeMake(self.view.frame.size.width*3, self.view.frame.size.height);
     [self.view addSubview:horizontalScroll];
     
     [horizontalScroll addSubview:[self makeScrollingList:0]];
     [horizontalScroll addSubview:[self makeScrollingList:1]];
     [horizontalScroll addSubview:[self makeScrollingList:2]];
+    
+    // Floating button
+    UIButton *floatingButton = [[UIButton alloc]initWithFrame:(CGRectMake(5,self.view.frame.size.height-95,40,40))];
+    floatingButton.backgroundColor = [StyleFactory deemphasizeButtonColor];
+    [floatingButton setTitle:@"+" forState:UIControlStateNormal];
+    floatingButton.titleLabel.font = [[StyleFactory heavyFont] fontWithSize:26.0];
+//    [self.view addSubview:floatingButton];
+    [self.view bringSubviewToFront:floatingButton];
     
 }
 

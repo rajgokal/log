@@ -61,7 +61,7 @@
     _textField.returnKeyType = UIReturnKeyDone;
     _textField.placeholder = @"#.##";
     _textField.textColor = [UIColor grayColor];
-    _textField.font = [StyleFactory normalFont];
+    _textField.font = [StyleFactory heavyFont];
     [self addSubview:_textField];
     
     // Done button
@@ -108,9 +108,13 @@
         _textField.hidden = NO;
     }
     UIColor *backgroundColor = _completed ? [StyleFactory emphasizeButtonColor] : [StyleFactory normalButtonColor];
+    UIColor *textColor = _completed ? [UIColor whiteColor] : [UIColor blackColor];
     self.backgroundColor = backgroundColor;
     self.name = _logEntry.name;
+    _nameLabel.textColor = textColor;
+    _textField.textColor = [UIColor whiteColor];
     _timeLabel.hidden = !_completed;
+    _timeLabel.textColor = textColor;
     _timeLabel.text = [_logEntry.stringFromTimestamp lowercaseString];
 }
 

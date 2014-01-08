@@ -39,10 +39,10 @@
     static Api *instance = nil;
     
     // home
-    //NSString *endPoint = @"http://10.10.0.135:80/api";
+    NSString *endPoint = @"http://10.10.0.135:80/api";
     
     // production
-    NSString *endPoint = @"http://context.gokal.co/api";
+//    NSString *endPoint = @"http://context.gokal.co/api";
 
     if (!instance){
         instance = [[Api alloc] initWithEndPoint: endPoint];
