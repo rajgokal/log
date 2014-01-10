@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "FMDatabase.h"
 #import "FMDatabaseQueue.h"
+#import "Habit.h"
 #import "LogEntry.h"
 
 @interface Database : NSObject
@@ -37,7 +38,9 @@
 + (LogEntry*) getLastLogEntryNamed: (NSString *) name;
 + (LogEntry *) getLastLogEntryNamed: (NSString *) name ForDay: (NSDate *) date;
 
-+ (NSInteger) numberOfLogEntries;
++ (Habit *)getHabitCategory:(NSNumber *)habitNumber forSection:(NSNumber *)sectionNumber;
 
++ (NSInteger) numberOfLogEntries;
++ (NSInteger) numberOfCategories;
 
 @end

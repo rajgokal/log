@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "LogItemsViewController.h"
 #import "HistoryViewController.h"
+#import "HabitCategoryViewController.h"
 #import "ViewController.h"
 #import "Database.h"
 
@@ -35,10 +36,14 @@
     logViewController.title = NSLocalizedString(@"Log", @"Log");
     logViewController.tabBarItem.image = [UIImage imageNamed:@"second"];
     
+    HabitCategoryViewController *habitCategoryViewController = [[HabitCategoryViewController alloc] initWithCoder:nil];
+    habitCategoryViewController.title = NSLocalizedString(@"Track", @"Track");
+    habitCategoryViewController.tabBarItem.image = [UIImage imageNamed:@"second"];
+    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 
     UITabBarController *tabBarController = [[UITabBarController alloc] init];
-    tabBarController.viewControllers = @[viewController,historyViewController,logViewController];
+    tabBarController.viewControllers = @[viewController,historyViewController,logViewController, habitCategoryViewController];
     
     self.window.rootViewController = tabBarController;
     [self.window makeKeyAndVisible];

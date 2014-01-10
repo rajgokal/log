@@ -158,6 +158,9 @@ static NSThread *_syncThread = nil;
     if(![db executeUpdate: @"DROP TABLE Lookup;"]){ NSLog(@"DB Error: %@", [db lastErrorMessage]); return(false); }
     NSLog(@"Drop Table: Lookup");
     
+    if(![db executeUpdate: @"DROP TABLE Category;"]){ NSLog(@"DB Error: %@", [db lastErrorMessage]); return(false); }
+    NSLog(@"Drop Table: Category");
+    
     [db close];
     
     return(true);
@@ -195,10 +198,6 @@ static NSThread *_syncThread = nil;
     
     FMDatabase *db = [Database open];
     [db executeUpdate: @"UPDATE LogEntry SET Synced = 0;"];
-    [db close];
-    
-    db = [Database open];
-    [db executeUpdate: @"UPDATE Image SET Synced = 0;"];
     [db close];
     
     [Database startBackgroundSync];
@@ -332,6 +331,10 @@ static NSThread *_syncThread = nil;
     return(numRows);
 }
 
++ (NSInteger) numberOfCategories{
+    return 10;
+}
+
 + (LogEntry*) getLogEntry: (NSInteger) itemNumber {
     
     FMDatabase *db = [Database open];
@@ -441,5 +444,10 @@ static NSThread *_syncThread = nil;
     [queue inDatabase: callback];
 }
 
++ (Habit *)getHabitCategory:(NSNumber *)habitNumber forSection:(NSNumber *)sectionNumber;
+{
+    Habit *habitCategory = [[Habit alloc] init];
+    return habitCategory;
+}
 
 @end

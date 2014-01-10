@@ -14,6 +14,8 @@
 		35613DA61864E2AF008C5A7C /* LogCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 35613DA51864E2AF008C5A7C /* LogCell.m */; };
 		35613DA818664680008C5A7C /* second@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 35613DA718664680008C5A7C /* second@2x.png */; };
 		35613DAA186646B1008C5A7C /* first@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 35613DA9186646B1008C5A7C /* first@2x.png */; };
+		357168A2188083CA008D7ABD /* HabitCategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 357168A1188083CA008D7ABD /* HabitCategoryViewController.m */; };
+		357168A518808626008D7ABD /* HabitCategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 357168A418808626008D7ABD /* HabitCategoryCell.m */; };
 		35A93AB7185FC46600292CF0 /* Database.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A93AB6185FC46600292CF0 /* Database.m */; };
 		35A93AC2185FC75000292CF0 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A93AB9185FC75000292CF0 /* FMDatabase.m */; };
 		35A93AC3185FC75000292CF0 /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 35A93ABB185FC75000292CF0 /* FMDatabaseAdditions.m */; };
@@ -66,6 +68,10 @@
 		35613DA51864E2AF008C5A7C /* LogCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogCell.m; sourceTree = "<group>"; };
 		35613DA718664680008C5A7C /* second@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "second@2x.png"; sourceTree = "<group>"; };
 		35613DA9186646B1008C5A7C /* first@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "first@2x.png"; sourceTree = "<group>"; };
+		357168A0188083CA008D7ABD /* HabitCategoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HabitCategoryViewController.h; sourceTree = "<group>"; };
+		357168A1188083CA008D7ABD /* HabitCategoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HabitCategoryViewController.m; sourceTree = "<group>"; };
+		357168A318808626008D7ABD /* HabitCategoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HabitCategoryCell.h; sourceTree = "<group>"; };
+		357168A418808626008D7ABD /* HabitCategoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HabitCategoryCell.m; sourceTree = "<group>"; };
 		35A93AB5185FC46600292CF0 /* Database.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Database.h; sourceTree = "<group>"; };
 		35A93AB6185FC46600292CF0 /* Database.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Database.m; sourceTree = "<group>"; };
 		35A93AB8185FC75000292CF0 /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
@@ -150,6 +156,8 @@
 				35613DA21864E154008C5A7C /* HistoryViewController.m */,
 				35C65266185F5DC0004A8141 /* LogItemsViewController.h */,
 				35C65267185F5DC0004A8141 /* LogItemsViewController.m */,
+				357168A0188083CA008D7ABD /* HabitCategoryViewController.h */,
+				357168A1188083CA008D7ABD /* HabitCategoryViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -172,6 +180,8 @@
 				35A93ADC18600ECE00292CF0 /* LogButton.m */,
 				35613DA41864E2AF008C5A7C /* LogCell.h */,
 				35613DA51864E2AF008C5A7C /* LogCell.m */,
+				357168A318808626008D7ABD /* HabitCategoryCell.h */,
+				357168A418808626008D7ABD /* HabitCategoryCell.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -403,6 +413,7 @@
 			files = (
 				35C65248185F5D71004A8141 /* ViewController.m in Sources */,
 				35A93AD4185FDBBF00292CF0 /* Application.m in Sources */,
+				357168A2188083CA008D7ABD /* HabitCategoryViewController.m in Sources */,
 				35A93AD5185FDBBF00292CF0 /* Api.m in Sources */,
 				35A93ACC185FCAB900292CF0 /* LogEntry.m in Sources */,
 				35A93ADD18600ECE00292CF0 /* LogButton.m in Sources */,
@@ -411,6 +422,7 @@
 				355188DB1867B52100632358 /* Habit.m in Sources */,
 				35C65242185F5D71004A8141 /* AppDelegate.m in Sources */,
 				35A93AC2185FC75000292CF0 /* FMDatabase.m in Sources */,
+				357168A518808626008D7ABD /* HabitCategoryCell.m in Sources */,
 				35A93AD8185FDD4E00292CF0 /* JsonRpcClient.m in Sources */,
 				35A93BB01860ED3C00292CF0 /* StyleFactory.m in Sources */,
 				35A93AC6185FC75000292CF0 /* FMResultSet.m in Sources */,

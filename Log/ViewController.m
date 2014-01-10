@@ -46,7 +46,7 @@
     floatingButton.backgroundColor = [StyleFactory deemphasizeButtonColor];
     [floatingButton setTitle:@"+" forState:UIControlStateNormal];
     floatingButton.titleLabel.font = [[StyleFactory heavyFont] fontWithSize:26.0];
-//    [self.view addSubview:floatingButton];
+    [self.view addSubview:floatingButton];
     [self.view bringSubviewToFront:floatingButton];
     
 }

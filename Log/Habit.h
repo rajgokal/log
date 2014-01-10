@@ -16,5 +16,4 @@
 @property int allTimeLogStreak;
 @property LogEntry *lastLogEntry;
 
-
 @end
