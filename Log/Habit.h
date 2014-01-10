@@ -16,4 +16,10 @@
 @property int allTimeLogStreak;
 @property LogEntry *lastLogEntry;
 
+@property (strong, nonatomic) NSString *habitId;
+@property (strong, nonatomic) NSString *name;
+
+- (id)init;
+- (id)initWithRecord: (FMResultSet*) rs;
+
 @end

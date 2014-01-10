@@ -33,12 +33,13 @@
 + (void) set: (NSString*)key value: (NSString*) value;
 
 + (void) saveLogEntry: (LogEntry*) entry withCallback: (void(^)(NSString*)) callback;
++ (void) saveHabitCategory: (Habit*)habit withCallback: (void(^)(NSString*)) callback;
 
 + (LogEntry*) getLogEntry: (NSInteger) entryId;
 + (LogEntry*) getLastLogEntryNamed: (NSString *) name;
 + (LogEntry *) getLastLogEntryNamed: (NSString *) name ForDay: (NSDate *) date;
 
-+ (Habit *)getHabitCategory:(NSNumber *)habitNumber forSection:(NSNumber *)sectionNumber;
++ (Habit *)getHabitCategory:(NSNumber *)habitNumber;
 
 + (NSInteger) numberOfLogEntries;
 + (NSInteger) numberOfCategories;

@@ -42,13 +42,12 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
-    _habits = [Database category:0];
-    
     // Floating button
     _floatingButton = [[UIButton alloc]initWithFrame:(CGRectMake(5,self.view.frame.size.height-95,40,40))];
     _floatingButton.backgroundColor = [StyleFactory deemphasizeButtonColor];
     [_floatingButton setTitle:@"+" forState:UIControlStateNormal];
     _floatingButton.titleLabel.font = [[StyleFactory heavyFont] fontWithSize:26.0];
+    [_floatingButton addTarget:self action:@selector(addHabit) forControlEvents:UIControlEventTouchUpInside];
     
     _tableView = [[UITableView alloc] initWithFrame:self.view.frame];
     _tableView.backgroundColor = [UIColor grayColor];
@@ -96,11 +95,21 @@
     static NSString *CellIdentifier = @"Cell";
     HabitCategoryCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
-    [Database getHabitCategory:[NSNumber numberWithInt:indexPath.row] forSection:0];
-    cell.name = @"Habit";
-    [cell loadLastLogEntry];
+    Habit *habit = [Database getHabitCategory:[NSNumber numberWithInt:indexPath.row]];
+    cell.name = habit.name;
     
     return cell;
+}
+
+- (void)addHabit
+{
+    Habit *habit = [[Habit alloc] init];
+    habit.name = @"New habit";
+    
+    [Database saveHabitCategory:habit withCallback: ^(NSString* newId){}];
+    
+    NSIndexPath *path = [NSIndexPath indexPathForRow:1 inSection:0];
+    [_tableView insertRowsAtIndexPaths:@[path] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
 /*

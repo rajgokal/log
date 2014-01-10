@@ -143,6 +143,9 @@ static NSThread *_syncThread = nil;
     if(![Database tableExists: @"LogEntry"]){
         [Database createTables];
     }
+    if(![Database tableExists: @"Category"]){
+        [Database createTables];
+    }
     
     return(true);
 }
@@ -332,13 +335,23 @@ static NSThread *_syncThread = nil;
 }
 
 + (NSInteger) numberOfCategories{
-    return 10;
+    FMDatabase *db = [Database open];
+    FMResultSet *rs = [db executeQuery: @"SELECT COUNT(*) FROM Category;"];
+    
+    NSInteger numRows = 0;
+    
+    if ([rs next]) {
+        numRows = [rs intForColumnIndex: 0];
+    }
+    
+    [db close];
+    
+    return(numRows);
 }
 
 + (LogEntry*) getLogEntry: (NSInteger) itemNumber {
     
     FMDatabase *db = [Database open];
-    
     FMResultSet *rs = [db executeQuery: @"SELECT Id, Timestamp, Name, Value, Synced FROM LogEntry ORDER BY Timestamp DESC LIMIT 1 OFFSET ?", [NSNumber numberWithInteger: itemNumber]];
     
     LogEntry* entry = nil;
@@ -347,7 +360,6 @@ static NSThread *_syncThread = nil;
         
         entry = [[LogEntry alloc] initWithRecord: rs];
         
-        //NSLog(@"Got Entry: %@", [entry toDictionary]);
     }
     
     [db close];
@@ -380,6 +392,40 @@ static NSThread *_syncThread = nil;
     [db close];
     
     return(entry);
+}
+
++ (Habit *)getHabitCategory:(NSNumber *)habitNumber;
+{
+    FMDatabase *db = [Database open];
+    FMResultSet *rs = [db executeQuery:@"Select Id, Name FROM Category ORDER BY Id DESC LIMIT 1 OFFSET ?", habitNumber];
+    
+    Habit *habitCategory = nil;
+    
+    if ([rs next]) {
+        habitCategory = [[Habit alloc] initWithRecord: rs];
+    }
+    
+    [db close];
+    
+    return habitCategory;
+}
+
++ (void) saveHabitCategory: (Habit*)habit withCallback: (void(^)(NSString*)) callback{
+    
+    if(habit.habitId && ![habit.habitId isEqual: @""]){
+        [Database openWithCallaback: ^(FMDatabase *db){
+            [db executeUpdate: @"UPDATE Category SET Name = ? WHERE Id = ?;", habit.name, habit.habitId];
+        }];
+        if(callback){ callback(habit.habitId); }
+    }else{
+        [Database openWithCallaback: ^(FMDatabase *db){
+            habit.habitId = [Application uuid];
+            [db executeUpdate: @"INSERT INTO Category (Id, Name) VALUES (?, ?);", habit.habitId, habit.name];
+        }];
+        if(callback){ callback(habit.habitId); }
+    }
+    
+    NSLog(@"%i categories", [Database numberOfCategories]);
 }
 
 + (LogEntry*) getLastLogEntryNamed: (NSString *) name {
@@ -416,7 +462,7 @@ static NSThread *_syncThread = nil;
     [query appendString: @"Value        REAL,"];
     [query appendString: @"Synced       INTEGER)"];
     
-    if(![db executeUpdate: query]){ NSLog(@"DB Error: %@", [db lastErrorMessage]); return(false); }
+    if(![db executeUpdate: query]){ NSLog(@"DB Error: %@", [db lastErrorMessage]);}
     
     query = [[NSMutableString alloc] init];
     
@@ -424,7 +470,15 @@ static NSThread *_syncThread = nil;
     [query appendString: @"Key           TEXT,"];
     [query appendString: @"Value         TEXT)"];
     
-    if(![db executeUpdate: query]){ NSLog(@"DB Error: %@", [db lastErrorMessage]); return(false); }
+    if(![db executeUpdate: query]){ NSLog(@"DB Error: %@", [db lastErrorMessage]);}
+    
+    query = [[NSMutableString alloc] init];
+    
+    [query appendString: @"CREATE TABLE Category("];
+    [query appendString: @"Id            TEXT,"];
+    [query appendString: @"Name          REAL)"];
+    
+    if(![db executeUpdate: query]){ NSLog(@"DB Error: %@", [db lastErrorMessage]);}
     
     [db close];
     
@@ -442,12 +496,6 @@ static NSThread *_syncThread = nil;
 + (void) openWithCallaback: (void(^)(FMDatabase *db)) callback{
     FMDatabaseQueue *queue = [FMDatabaseQueue databaseQueueWithPath:_dbPath];
     [queue inDatabase: callback];
-}
-
-+ (Habit *)getHabitCategory:(NSNumber *)habitNumber forSection:(NSNumber *)sectionNumber;
-{
-    Habit *habitCategory = [[Habit alloc] init];
-    return habitCategory;
 }
 
 @end

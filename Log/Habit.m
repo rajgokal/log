@@ -10,4 +10,29 @@
 
 @implementation Habit
 
+@synthesize habitId = _habitId;
+@synthesize name = _name;
+
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        _habitId = @"";
+        _name = @"";
+    }
+    return self;
+}
+
+- (id)initWithRecord: (FMResultSet*) rs{
+    
+    self = [self init];
+    
+    if(self){
+        self.habitId = [rs stringForColumn:@"Id"];
+        self.name = [rs stringForColumn:@"Name"];
+    }
+    
+    return self;
+}
+
 @end
